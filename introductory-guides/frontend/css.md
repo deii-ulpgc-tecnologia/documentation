@@ -181,4 +181,32 @@ Las pseudoclases más usadas son:
 
 ## Media Querys
 
+Las media queries son útiles cuando deseas modificar tu página web o aplicación en función del tipo de dispositivo o de características y parámetros específicos como la resolución de la pantalla o el ancho del viewport del navegador (por ejemplo para hacer un diseño responsive). 
+
+Se utilizan para:
+
+Aplicar estilos condicionales con las reglas-at `@media` e `@import` de CSS.
+Indicar medios específicos en los elementos <link>, <source> y otros elementos HTML.
+Testear y monitorizar los estados de los medios usando los métodos de javascript `Window.matchMedia()` y `MediaQueryList.addListener()`.
+
+### Sintaxis
+Las media queries consisten de un tipo de medio opcional y una o más expresiones de características de medios. Varias consultas se pueden combinar utilizando operadores lógicos. No distinguen entre mayúsculas y minúsculas.
+
+El resultado de la consulta es "verdadero" cuando el tipo de medio (si se especifica) coincide con el dispositivo en el que se está mostrando el documento y todas las expresiones en el media query son "verdaderas". En este caso, se aplica los estilos correspondientes, siguiendo las reglas usuales de cascada.
+
+La forma más sencilla de entender esto es viendo ejemplos de uso:
+```CSS
+<!-- CSS media query para importar un css distinto -->
+<link rel="stylesheet" media="(max-width: 800px)" href="example.css" />
+
+<!-- CSS media query en una hoja de estilo -->
+
+@media (max-width: 600px) {
+  .navigation-bar {
+    display: none;
+  }
+}
+```
+Consultar más sobre el uso de media queris [aquí](https://developer.mozilla.org/es/docs/Web/CSS/Media_Queries/Using_media_queries).
+
 ## SCSS Básico
