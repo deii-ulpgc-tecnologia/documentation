@@ -179,34 +179,91 @@ Las pseudoclases más usadas son:
 
 `:visited` - Representa la apariencia que tiene  un elemento cuando se ha visitado. Se suele usar para los enlaces.
 
+
+**Parada para ver ejemplo de CSS con el formulario de la sección de HTML.**
+
+[CSS](./examples/css-form.html)[.html](./examples/css-form.html)
+
 ## Media Querys
 
 Las media queries son útiles cuando deseas modificar tu página web o aplicación en función del tipo de dispositivo o de características y parámetros específicos como la resolución de la pantalla o el ancho del viewport del navegador (por ejemplo para hacer un diseño responsive). 
 
 Se utilizan para:
-
 Aplicar estilos condicionales con las reglas-at `@media` e `@import` de CSS.
 Indicar medios específicos en los elementos <link>, <source> y otros elementos HTML.
 Testear y monitorizar los estados de los medios usando los métodos de javascript `Window.matchMedia()` y `MediaQueryList.addListener()`.
+[Página de referencia](https://developer.mozilla.org/es/docs/Web/CSS/Media_Queries/Using_media_queries)
 
-### Sintaxis
-Las media queries consisten de un tipo de medio opcional y una o más expresiones de características de medios. Varias consultas se pueden combinar utilizando operadores lógicos. No distinguen entre mayúsculas y minúsculas.
+![media queries](../assets/media-querys.png)
 
-El resultado de la consulta es "verdadero" cuando el tipo de medio (si se especifica) coincide con el dispositivo en el que se está mostrando el documento y todas las expresiones en el media query son "verdaderas". En este caso, se aplica los estilos correspondientes, siguiendo las reglas usuales de cascada.
+En la estética de las distintas páginas es necesario generar distintos formatos en fun.ción del ancho de la página. 
 
-La forma más sencilla de entender esto es viendo ejemplos de uso:
-```CSS
-<!-- CSS media query para importar un css distinto -->
-<link rel="stylesheet" media="(max-width: 800px)" href="example.css" />
+Esto se hace con los `@media (max-width: 320px){}` de esta forma, solo cambiarán los elementos que se encuentren dentro del @ media.
 
-<!-- CSS media query en una hoja de estilo -->
+Otras de las medias que se pueden utilizar son `@media (orientation: landscape){}` para definir si queremos que los cambios se hagan cuando la orientación de la pantalla es en horizontal o en vertical.
 
-@media (max-width: 600px) {
-  .navigation-bar {
-    display: none;
-  }
+PE.
+
+```apache
+# El elemento que tenga .rojo, tendrá color rojo.
+.rojo{ color: red }
+
+# Si el ancho es menor de 768px el color del elemento que tenga la clase rojo, será azul.
+@media (max-width: 768px){
+	.rojo{ color: blue; }
 }
 ```
-Consultar más sobre el uso de media queris [aquí](https://developer.mozilla.org/es/docs/Web/CSS/Media_Queries/Using_media_queries).
+
+@media (max-width: 768px){} - Menor o igual a 768px.
+
+@media (max-width: 768px){} - Mayor o igual a 768px
+
+Sigue siendo Estilos en Cascada, por lo que lo que si escribimos:
+
+```apache
+.red{ 
+	background-color: black; 
+	color: yellow;
+}
+
+
+# Menor o igual a 768px.
+@media (max-width: 768px){
+	.rojo{ color:red; } 
+}
+
+# Mayor o igual a 768px
+@media (min-width: 768px){
+	.rojo{ color:blue; } 
+}
+```
+
+En ambos casos el fondo será negro, y sólo cambiará el color de la letra. Y en nigún caso el color de la letra será amarillo, ya que se superponen los 2 media queries.
+
+Lo normal sería tener algo como:
+
+```apache
+#Cosas por defecto(pantalla mayor a 1200px)
+
+# Entre 1200px y 1024px (formato pantalla normal)).
+@media (max-width: 1200px) and (min-width: 1024px)){ }
+
+# Entre 1024px y 768px (formato tablet)).
+@media (max-width: 1024px) and (min-width: 768px)){ }
+
+# Entre 768px y 480px (formato movil/orientación horizontal)).
+@media (max-width: 768px) and (min-width: 480px)){ }
+
+# Entre 480px y 320px (formato movil orientación vertical)).
+@media (max-width: 480px) and (min-width: 320px)){ }
+
+```
+
+Para utilizar los media querys, la mejor forma es con F12, y usar el icono en la esquina superior izquierda, que tiene un movil y una tablet, con esto podrás cambiar el alto y el ancho de la página a antojo.
+
+(No se ve bien debido a que no se puso todavía un formato correcto para estas dimensiones)
+
+![media-query](../assets/query.png)
+
 
 ## SCSS Básico
